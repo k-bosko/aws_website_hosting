@@ -1,0 +1,4 @@
+boto3==1.21.3
+autopep8
+isort
+requests

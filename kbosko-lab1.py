@@ -9,11 +9,19 @@ import requests
 
 
 def upload_directory(path, bucketname, client):
+    '''
+    Upload a static website from a local directory to a bucket in S3
+
+    bucketname: the name of a bucket where to upload the website
+    path: the local directory that contains the website
+    client: S3 client that will handle the upload
+
+    '''
     print("starting upload")
     for root, dirs, files in os.walk(path):
         for file in files:
             relative_path = os.path.join(root, file)
-            path_to_upload = relative_path.replace('aws_website_hosting-main/', '')
+            path_to_upload = relative_path.replace('aws_website_hosting-main/_site/', '')
             extension = file.split('.')[-1]
 
             mimetypes.init()
@@ -35,7 +43,10 @@ def upload_directory(path, bucketname, client):
 
 
 def main():
-    if not os.path.isdir('aws_website_hosting-main'):
+    site_path = 'aws_website_hosting-main/_site'
+    bucket_name = 'lab1kbosko'
+
+    if not os.path.isdir(site_path):
         # get the data from link
         url = "https://github.com/k-bosko/aws_website_hosting/archive/refs/heads/main.zip"
         r = requests.get(url, stream=True)
@@ -48,8 +59,6 @@ def main():
     # create a client
     client = boto3.client('s3')
 
-    bucket_name = 'lab1kbosko'
-    site_path = 'aws_website_hosting-main'
 
     #list buckets
     buckets = s3.buckets.all()
@@ -100,7 +109,9 @@ def main():
     upload_directory(site_path, bucket_name, client)
 
     print("Website can be accessed at:")
-    print(f"http://{bucket_name}.s3-website-us-east-1.amazonaws.com/")
+    location = client.get_bucket_location(Bucket=bucket_name)['LocationConstraint']
+    if location == None: location = 'us-east-1'
+    print(f"http://{bucket_name}.s3-website-{location}.amazonaws.com/")
 
 
 if __name__ == '__main__':
