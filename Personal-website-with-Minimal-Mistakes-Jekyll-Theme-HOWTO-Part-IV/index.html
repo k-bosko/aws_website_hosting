@@ -1,0 +1,776 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.16.6 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Personal Website with Minimal Mistakes Jekyll Theme HOWTO - Part IV | Cross-Validated</title>
+<meta name="description" content="How to improve SEO, enable public comments provider and add Google Analytics">
+
+
+  <meta name="author" content="Katerina Bosko, PhD">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Cross-Validated">
+<meta property="og:title" content="Personal Website with Minimal Mistakes Jekyll Theme HOWTO - Part IV">
+<meta property="og:url" content="http://0.0.0.0:4000/Personal-website-with-Minimal-Mistakes-Jekyll-Theme-HOWTO-Part-IV/">
+
+
+  <meta property="og:description" content="How to improve SEO, enable public comments provider and add Google Analytics">
+
+
+
+  <meta property="og:image" content="http://0.0.0.0:4000/assets/images/thumbnails/joel-filipe-thumb-400.jpg">
+
+
+
+  <meta name="twitter:site" content="@kbosko3">
+  <meta name="twitter:title" content="Personal Website with Minimal Mistakes Jekyll Theme HOWTO - Part IV">
+  <meta name="twitter:description" content="How to improve SEO, enable public comments provider and add Google Analytics">
+  <meta name="twitter:url" content="http://0.0.0.0:4000/Personal-website-with-Minimal-Mistakes-Jekyll-Theme-HOWTO-Part-IV/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+      <meta name="twitter:image" content="http://0.0.0.0:4000/assets/images/thumbnails/joel-filipe-thumb-400.jpg">
+    
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2019-09-01T00:00:00-07:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://0.0.0.0:4000/Personal-website-with-Minimal-Mistakes-Jekyll-Theme-HOWTO-Part-IV/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Katerina Bosko, PhD",
+      "url": "http://0.0.0.0:4000/"
+    
+  }
+</script>
+
+
+  <meta name="google-site-verification" content="SYD0JgIlJwQXb6L6lDyBaRuknpto7FAtNLQEM7RqswU" />
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<!-- <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Cross-Validated Feed"> -->
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+           
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/index.html" >Home</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/" >About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/portfolio/" >Portfolio</a>
+            </li><li class="masthead__menu-item">
+              <a href="/assets/docs/resume-kbosko.pdf" >Resume</a>
+            </li><li class="masthead__menu-item">
+              <a href="/certificates/" >Certificates</a>
+            </li><li class="masthead__menu-item">
+              <a href="/achievements/" >Achievements</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/" >Archive</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/assets/images/kbosko-color-small.jpg" alt="Katerina Bosko, PhD" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Katerina Bosko, PhD</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Data Scientist with background in Social Sciences</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">San Francisco Bay Area (CA)</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:kbosko@cross-validated.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://twitter.com/kbosko3" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/k-bosko/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+          
+            <li><a href="https://linkedin.com/in/k-bosko/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> Linkedin</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Personal Website with Minimal Mistakes Jekyll Theme HOWTO - Part IV">
+    <meta itemprop="description" content="How to improve SEO, enable public comments provider and add Google Analytics">
+    <meta itemprop="datePublished" content="September 01, 2019">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Personal Website with Minimal Mistakes Jekyll Theme HOWTO - Part IV
+</h1>
+          <!-- 
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+</p>
+           -->
+          
+            <p class="page__date"><strong></strong> <time datetime="2019-09-01T00:00:00-07:00">September 01, 2019</time></p>
+          
+          <section class="page__share">
+ 
+  <a href="https://twitter.com/intent/tweet?via=kbosko3&text=Personal+Website+with+Minimal+Mistakes+Jekyll+Theme+HOWTO+-+Part+IV%20http%3A%2F%2F0.0.0.0%3A4000%2FPersonal-website-with-Minimal-Mistakes-Jekyll-Theme-HOWTO-Part-IV%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F0.0.0.0%3A4000%2FPersonal-website-with-Minimal-Mistakes-Jekyll-Theme-HOWTO-Part-IV%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2F0.0.0.0%3A4000%2FPersonal-website-with-Minimal-Mistakes-Jekyll-Theme-HOWTO-Part-IV%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i></a>
+</section>
+
+        </header>
+      
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> Content</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#adding-your-website-to-google-search-console">ADDING YOUR WEBSITE TO GOOGLE SEARCH CONSOLE</a></li>
+  <li><a href="#adding-google-analytics">ADDING GOOGLE ANALYTICS</a></li>
+  <li><a href="#enabling-public-comments">ENABLING PUBLIC COMMENTS</a></li>
+  <li><a href="#adding-favicon">ADDING FAVICON</a></li>
+  <li><a href="#enacting-twitter-cards-and-facebook-open-graph">ENACTING TWITTER CARDS AND FACEBOOK OPEN GRAPH</a></li>
+  <li><a href="#correcting-og-image-when-sharing-your-website-on-linkedin">CORRECTING OG IMAGE WHEN SHARING YOUR WEBSITE ON LINKEDIN</a></li>
+</ul>
+            </nav>
+          </aside>
+        
+        <p class="notice--primary"><em>This is Part IV of the website HOWTO series. See <a href="/Personal-website-with-Minimal-Mistakes-Jekyll-Theme-HOWTO-Part-I">Part I</a> on Docker, <a href="/Personal-website-with-Minimal-Mistakes-Jekyll-Theme-HOWTO-Part-II">Part II</a> on theme customization and <a href="/Personal-website-with-Minimal-Mistakes-Jekyll-Theme-HOWTO-Part-III">Part III</a> on deployment on GitHub Pages with private domain.</em></p>
+<p> 
+ </p>
+
+<p>This website is built with <strong>Jekyll using Minimal Mistakes theme</strong> and hosted on <strong>GitHub Pages</strong>. For development and writing posts I use Docker that builds a static website locally and serves it from a Docker container. I then push the local changes upstream to GitHub which then builds the website on GitHub’s servers.</p>
+
+<p>If you followed the steps in all three parts of HOWTO series, you should now have a fully functional website hosted on GitHub Pages. Steps in these post are optional, but nice to have if you want to improve SEO, add public comments provider and enable social share with images.<br />
+ 
+ 
+ 
+ </p>
+
+<h3 id="adding-your-website-to-google-search-console">ADDING YOUR WEBSITE TO GOOGLE SEARCH CONSOLE</h3>
+
+<p>To get access to Google Search data for your website, you need first to verify site ownership. If you bought private domain from Google Domains, it will be automatically verified after you add a website property to <a href="https://search.google.com/search-console/about">Google Search Console</a>.</p>
+
+<blockquote>
+  <p>Google Search Console provides tools to help you submit your content to Google and monitor how you’re doing in Google Search.</p>
+</blockquote>
+
+<p class="notice--info text-justify"><i class="far fa-sticky-note"></i> <strong>Note:</strong> It can take some time after verifying your site to start seeing data in Search Console reports, so be patient.</p>
+
+<p>Next you should add <code class="language-plaintext highlighter-rouge">sitemap.xml</code> (which is automatically generated in MM theme with jekyll-sitemap plugin) to Google Search Console.</p>
+
+<blockquote>
+  <p>An XML sitemap lists a website’s important pages, making sure Google can find and crawl them all, 
+and helping it understand your website structure — Yoast SEO for everyone <sup id="fnref:ft1" role="doc-noteref"><a href="#fn:ft1" class="footnote" rel="footnote">1</a></sup></p>
+</blockquote>
+
+<figure class="">
+  <img src="/assets/images/posts/Google-Search-Console-sitemap.png" alt="adding sitemap.xml to Google Search Console" />
+  </figure>
+
+<p> 
+ 
+ </p>
+
+<hr />
+<h3 id="adding-google-analytics">ADDING GOOGLE ANALYTICS</h3>
+
+<p>This is rather straitforward. You register your website at <a href="https://marketingplatform.google.com/about/analytics/">https://marketingplatform.google.com/about/analytics/</a>.
+Then you just need to specify analytics provider <code class="language-plaintext highlighter-rouge">google</code> in your <code class="language-plaintext highlighter-rouge">_config.yml</code>, add google <code class="language-plaintext highlighter-rouge">tracking_id</code> and set <code class="language-plaintext highlighter-rouge">anonymize_ip</code> to <code class="language-plaintext highlighter-rouge">true</code> to prevent the storage of full IP address information (which is also more ethical).</p>
+
+<p class="notice--info text-justify"><i class="far fa-sticky-note"></i> <strong>Note:</strong> The <code class="language-plaintext highlighter-rouge">tracking_id</code> usually starts with UA… You can find it when you click on <code class="language-plaintext highlighter-rouge">All Website Data</code> in the top left corner of Google Analytics page.</p>
+
+<p> 
+ 
+ </p>
+
+<hr />
+<h3 id="enabling-public-comments">ENABLING PUBLIC COMMENTS</h3>
+
+<p>Minimal Mistakes supports a lot of comment providers, which for a newbie like me is quite overwhelming. 
+I tried to enable Staticman, because it allows to escape reliance on third-party services. But as of now it seems to have problems with API calls to GitHub and the solution to host own instance of Staticman API didn’t appeal to me. <sup id="fnref:f1" role="doc-noteref"><a href="#fn:f1" class="footnote" rel="footnote">2</a></sup></p>
+
+<p>So I decided to go with <a href="https://disqus.com">Disqus</a>. For this you need to signup with them first and provide your website’s shortname. Then enable <code class="language-plaintext highlighter-rouge">disqus</code> as provider in your <code class="language-plaintext highlighter-rouge">_config.yml</code> and add the shortname.</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">comments</span><span class="pi">:</span>
+  <span class="na">provider               </span><span class="pi">:</span> <span class="s2">"</span><span class="s">disqus"</span> <span class="c1">#false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "custom"</span>
+  <span class="na">disqus</span><span class="pi">:</span>
+    <span class="na">shortname            </span><span class="pi">:</span> <span class="s">cross-validated</span> <span class="c1"># https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-</span>
+</code></pre></div></div>
+
+<p>Don’t forget to build the website again after updating <code class="language-plaintext highlighter-rouge">_config.yml</code>.</p>
+
+<p class="notice--info text-justify"><i class="far fa-sticky-note"></i> <strong>Note:</strong> You won’t see public comments in Jekyll’s development mode (this is how Docker container described in HOWTO <a href="/Personal-website-with-Minimal-Mistakes-Jekyll-Theme-HOWTO-Part-I">Part I</a> is set up) even if you enabled provider in Minimal Mistakes theme. You need to switch to production environment first. See HOWTO <a href="/Personal-website-with-Minimal-Mistakes-Jekyll-Theme-HOWTO-Part-III">Part III</a> for more info.</p>
+
+<p> 
+ 
+ </p>
+
+<hr />
+
+<h3 id="adding-favicon">ADDING FAVICON</h3>
+
+<dl>
+  <dt>Favicon</dt>
+  <dd>is a small icon associated with your website. Like this one:
+<img src="../favicon.ico" alt="favicon" /></dd>
+</dl>
+
+<p>Minimal Mistakes has the ability to add these small icons to different browsers. You have first to generate them with <a href="https://realfavicongenerator.net/">https://realfavicongenerator.net/</a> and then put the final images to your root directory and the links generated by the favicon generator to <code class="language-plaintext highlighter-rouge">_includes/head/custom.html</code></p>
+
+<p> 
+ 
+ </p>
+
+<hr />
+<h3 id="enacting-twitter-cards-and-facebook-open-graph">ENACTING TWITTER CARDS AND FACEBOOK OPEN GRAPH</h3>
+
+<p>It’s almost a norm nowadays to share posts with images rather than just plain text. This is what <a href="https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/abouts-cards.html">Twitter Cards</a> and <a href="https://developers.facebook.com/docs/sharing/webmasters">Facebook Open Graph</a> are for. Conveniently, the MM has already built them into the theme.You have all necessary meta tags in <code class="language-plaintext highlighter-rouge">_includes/seo.html</code>. To enable them, you need to set website’s <code class="language-plaintext highlighter-rouge">url</code> in <code class="language-plaintext highlighter-rouge">_config.yml</code>.</p>
+
+<p class="notice--info text-justify"><i class="far fa-sticky-note"></i> <strong>Note:</strong> Make sure that your url in <code class="language-plaintext highlighter-rouge">_config.yml</code> starts with <code class="language-plaintext highlighter-rouge">https://www</code>. Otherwise your metatags for Twitter and Facebook won’t work because they won’t recognize it as url.</p>
+
+<p>Both Twitter Cards and Facebook OG rely on either image from <code class="language-plaintext highlighter-rouge">og_image</code> that you can specify in <code class="language-plaintext highlighter-rouge">_config.yml</code> or on particular teaser image that you specify on page’s Front Matter. Don’t forget to add <code class="language-plaintext highlighter-rouge">excerpt</code> to Front Matter for short description of post’s content to be shared via Twitter and FB.
+ 
+ 
+ </p>
+
+<hr />
+<h3 id="correcting-og-image-when-sharing-your-website-on-linkedin">CORRECTING OG IMAGE WHEN SHARING YOUR WEBSITE ON LINKEDIN</h3>
+
+<p>I had a problem with the OG image when sharing the link to my website on LinkedIn. It just kept fetching my avatar photo instead of a website logo.
+How to solve this?</p>
+
+<ol>
+  <li>Make sure that you specified the path to your website’s logo in <code class="language-plaintext highlighter-rouge">og_image</code> in <code class="language-plaintext highlighter-rouge">_config.yml</code>.</li>
+  <li>Delete <code class="language-plaintext highlighter-rouge">| default: page.header.image</code> from</li>
+</ol>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+{%- assign page_large_image = page.header.og_image | default: page.header.overlay_image | default: page.header.image -%}
+
+</code></pre></div></div>
+
+<p>in <code class="language-plaintext highlighter-rouge">_includes/seo.html</code></p>
+
+<p class="notice--info text-justify"><i class="far fa-sticky-note"></i> <strong>Note:</strong> You can check what image is fetched on LinkedIn at <a href="https://www.linkedin.com/post-inspector/">LinkedIn’s Post Inspector</a>.</p>
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:ft1" role="doc-endnote">
+      <p>I find that <a href="https://yoast.com/tag/google-search-console/">Yoast’s blog</a> provides a great start into Google Search Console. <a href="#fnref:ft1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:f1" role="doc-endnote">
+      <p>Some people host Staticman with Heroku. If you are interested, check out this <a href="https://www.datascienceblog.net/post/other/staticman_comments/">tutorial</a>. Not sure if it works though. <a href="#fnref:f1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#disqus" class="page__taxonomy-item" rel="tag">Disqus</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#facebook-og" class="page__taxonomy-item" rel="tag">Facebook OG</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#google-analytics" class="page__taxonomy-item" rel="tag">Google Analytics</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#google-search-console" class="page__taxonomy-item" rel="tag">Google Search Console</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#linkedin" class="page__taxonomy-item" rel="tag">LinkedIn</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#minimal-mistakes-jekyll" class="page__taxonomy-item" rel="tag">Minimal Mistakes Jekyll</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#seo" class="page__taxonomy-item" rel="tag">SEO</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#twitter-cards" class="page__taxonomy-item" rel="tag">Twitter Cards</a>
+    
+    </span>
+  </p>
+
+
+
+
+      </footer>
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "/assets/images/thumbnails/joel-filipe-thumb-400.jpg"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/Running-Cassandra-and-Postgres-in-Docker/" rel="permalink">Running Cassandra and PostgreSQL in Docker
+</a>
+      
+    </h2>
+    <!-- 
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+</p>
+     -->
+    <p class="archive__item-excerpt" itemprop="description">How to set up the environment for Udacity Data Engineering Nanodegree on your local machine
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "/assets/images/thumbnails/joel-filipe-thumb-400.jpg"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/Udacity-Review-Digital-Marketing-Nanodegree/" rel="permalink">Udacity Review: Digital Marketing Nanodegree
+</a>
+      
+    </h2>
+    <!-- 
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+</p>
+     -->
+    <p class="archive__item-excerpt" itemprop="description">Is Digital Marketing Nanodegree by Udacity worth it?
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "/assets/images/thumbnails/joel-filipe-thumb-400.jpg"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/XML-Sitemap-Problem-when-hosting-on-GitHub/" rel="permalink">Troubleshooting: XML Sitemap when hosting on GitHub
+</a>
+      
+    </h2>
+    <!-- 
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+</p>
+     -->
+    <p class="archive__item-excerpt" itemprop="description">How to check Indexing state with Google Search Console
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "/assets/images/thumbnails/joel-filipe-thumb-400.jpg"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/How-to-improve-SEO-by-boosting-website-speed/" rel="permalink">How to improve SEO by boosting website speed
+</a>
+      
+    </h2>
+    <!-- 
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+</p>
+     -->
+    <p class="archive__item-excerpt" itemprop="description">How to Run Website Speed Test with Google PageSpeed Insights
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<!-- end custom footer snippets -->
+        <!-- <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div> -->
+
+<div class="page__footer-copyright">&copy; 2022 Katerina Bosko, PhD. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <!-- <script src="https://kit.fontawesome.com/4eee35f757.js"></script> -->
+
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://0.0.0.0:4000/Personal-website-with-Minimal-Mistakes-Jekyll-Theme-HOWTO-Part-IV/";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = "/Personal-website-with-Minimal-Mistakes-Jekyll-Theme-HOWTO-Part-IV"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://cross-validated.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+  </body>
+</html>
