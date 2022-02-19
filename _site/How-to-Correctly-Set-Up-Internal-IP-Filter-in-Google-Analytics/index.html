@@ -1,0 +1,714 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.16.6 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>How to Correctly Set Up Internal IP Filter in Google Analytics | Cross-Validated</title>
+<meta name="description" content="How to set Internal IP filter in Google Analytics and check that it is actually working.">
+
+
+  <meta name="author" content="Katerina Bosko, PhD">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Cross-Validated">
+<meta property="og:title" content="How to Correctly Set Up Internal IP Filter in Google Analytics">
+<meta property="og:url" content="http://0.0.0.0:4000/How-to-Correctly-Set-Up-Internal-IP-Filter-in-Google-Analytics/">
+
+
+  <meta property="og:description" content="How to set Internal IP filter in Google Analytics and check that it is actually working.">
+
+
+
+  <meta property="og:image" content="http://0.0.0.0:4000/assets/images/thumbnails/joel-filipe-thumb-400.jpg">
+
+
+
+  <meta name="twitter:site" content="@kbosko3">
+  <meta name="twitter:title" content="How to Correctly Set Up Internal IP Filter in Google Analytics">
+  <meta name="twitter:description" content="How to set Internal IP filter in Google Analytics and check that it is actually working.">
+  <meta name="twitter:url" content="http://0.0.0.0:4000/How-to-Correctly-Set-Up-Internal-IP-Filter-in-Google-Analytics/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+      <meta name="twitter:image" content="http://0.0.0.0:4000/assets/images/thumbnails/joel-filipe-thumb-400.jpg">
+    
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2020-04-21T00:00:00-07:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://0.0.0.0:4000/How-to-Correctly-Set-Up-Internal-IP-Filter-in-Google-Analytics/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Katerina Bosko, PhD",
+      "url": "http://0.0.0.0:4000/"
+    
+  }
+</script>
+
+
+  <meta name="google-site-verification" content="SYD0JgIlJwQXb6L6lDyBaRuknpto7FAtNLQEM7RqswU" />
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<!-- <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Cross-Validated Feed"> -->
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+           
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/index.html" >Home</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/" >About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/portfolio/" >Portfolio</a>
+            </li><li class="masthead__menu-item">
+              <a href="/assets/docs/resume-kbosko.pdf" >Resume</a>
+            </li><li class="masthead__menu-item">
+              <a href="/certificates/" >Certificates</a>
+            </li><li class="masthead__menu-item">
+              <a href="/achievements/" >Achievements</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/" >Archive</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/assets/images/kbosko-color-small.jpg" alt="Katerina Bosko, PhD" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Katerina Bosko, PhD</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Data Scientist with background in Social Sciences</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">San Francisco Bay Area (CA)</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:kbosko@cross-validated.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://twitter.com/kbosko3" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/k-bosko/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+          
+            <li><a href="https://linkedin.com/in/k-bosko/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> Linkedin</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="How to Correctly Set Up Internal IP Filter in Google Analytics">
+    <meta itemprop="description" content="How to set Internal IP filter in Google Analytics and check that it is actually working.">
+    <meta itemprop="datePublished" content="April 21, 2020">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">How to Correctly Set Up Internal IP Filter in Google Analytics
+</h1>
+          <!-- 
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+</p>
+           -->
+          
+            <p class="page__date"><strong></strong> <time datetime="2020-04-21T00:00:00-07:00">April 21, 2020</time></p>
+          
+          <section class="page__share">
+ 
+  <a href="https://twitter.com/intent/tweet?via=kbosko3&text=How+to+Correctly+Set+Up+Internal+IP+Filter+in+Google+Analytics%20http%3A%2F%2F0.0.0.0%3A4000%2FHow-to-Correctly-Set-Up-Internal-IP-Filter-in-Google-Analytics%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F0.0.0.0%3A4000%2FHow-to-Correctly-Set-Up-Internal-IP-Filter-in-Google-Analytics%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2F0.0.0.0%3A4000%2FHow-to-Correctly-Set-Up-Internal-IP-Filter-in-Google-Analytics%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i></a>
+</section>
+
+        </header>
+      
+      <section class="page__content" itemprop="text">
+        
+        <p>Google Analytics allows you to filter out data based on IPs, which comes handy when you want to exclude your own views.</p>
+
+<p>It turned out that my internal IP filter did not work properly and my Google Analytics data all this time was contaminated by my own page views. :(</p>
+
+<p>If you want to avoid my mistakes, read through.</p>
+
+<p class="notice--info text-justify"><i class="far fa-sticky-note"></i> <strong>Note:</strong> It is important to note from the start that applying Filter in Google Analytics is permanent, meaning that Google Analytics will not record excluded data and you will not be able to access it at later stage. So use Filters precautiously.</p>
+
+<h2 id="setting-up-internal-ip-filter-in-google-analytics">Setting up Internal IP Filter in Google Analytics</h2>
+<p>Go to Admin and choose <code class="highlighter-rouge">All Filters</code> from left pane:</p>
+
+<figure class="">
+  <img src="/assets/images/posts/Google-Analytics-Product-Linking.png" alt="Google Analytics Admin page" />
+  </figure>
+
+<p>Click <code class="highlighter-rouge">Add Filter</code> and configure it like so, inserting your IP adress respectively:</p>
+
+<figure class="">
+  <img src="/assets/images/posts/Google-Analytics-Internal-Filter.png" alt="Google Analytics Filter Page" />
+  </figure>
+
+<p class="notice--info text-justify"><i class="far fa-sticky-note"></i> <strong>Note:</strong> If you don’t know your IP address, just google “What is my IP address”.</p>
+
+<p>I have here two views - <code class="highlighter-rouge">All Web Site Data</code> and <code class="highlighter-rouge">Test View</code>. This will be useful later when we will be testing the internal Filter. So if you don’t have the <code class="highlighter-rouge">Test View</code> create it now (Admin -&gt; Create View on the right pane).</p>
+
+<p>Make sure that you added only <code class="highlighter-rouge">All Web Site Data</code> to Selected views, while <code class="highlighter-rouge">Test View</code> is not selected. Don’t forget to Save.</p>
+
+<h2 id="troubleshooting-1---no-ip-anonymization">Troubleshooting 1 - No IP Anonymization</h2>
+
+<p>Theoretically, setting up the Filter as described above should suffice. My mistake, however, was to allow IP anonymization on my Minimal Mistakes website.</p>
+
+<p>So you want to make sure that <code class="highlighter-rouge">anonymize_ip</code> is set to false in <code class="highlighter-rouge">_config.yml</code>:</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Analytics</span>
+<span class="na">analytics</span><span class="pi">:</span>
+  <span class="na">provider               </span><span class="pi">:</span> <span class="s">google-gtag</span> <span class="c1"># false (default), "google", "google-universal", "custom"</span>
+  <span class="na">google</span><span class="pi">:</span>
+    <span class="na">tracking_id          </span><span class="pi">:</span> <span class="s">UA-XXXXXXXXX-1</span>
+    <span class="na">anonymize_ip         </span><span class="pi">:</span> <span class="no">false</span> <span class="c1"># false (default)</span>
+    <span class="na">optimize_id          </span><span class="pi">:</span> <span class="s">GTM-XXXXXXX</span>
+</code></pre></div></div>
+
+<h2 id="troubleshooting-2---checking-filter">Troubleshooting 2 - Checking Filter</h2>
+
+<p>One way to check if your internal Filter is NOT working is to open your website and go to Real-Time Report in Google Analytics. If you don’t have much traffic on your website, you will notice the 1 person on your website that has suspiciously the same location as yours (this is how I found out…).</p>
+
+<p>However, there is a better way to check.</p>
+
+<p>For this, you need to install two extensions in Google Chrome -</p>
+
+<ol>
+  <li><a href="https://chrome.google.com/webstore/detail/tag-assistant-by-google/kejbdjndbnbjgmefkgdddjlbokphdefk?hl=en">Google Tag Assistant</a></li>
+  <li><a href="https://chrome.google.com/webstore/detail/google-analytics-debugger/jnkmfdileelhofjcijamephohjechhna?hl=en">Google Analytics debugger</a></li>
+</ol>
+
+<p>Make sure you enabled them both. Google Analytics Debugger needs to be explicitly turned on by clicking on its icon. They will appear then in the top right-hand side on your Google Chrome address bar like so:</p>
+
+<figure style="width: 50%" class="align-center">
+  <img src="/assets/images/posts/Google-Analytics-Debugger-Tag-Assistant-icons.jpg" alt="Google Analytics Debugger and Tag Assistant Icons in Chrome" />
+</figure>
+
+<p>Now open your website and record a flow with Google Tag Assistant. If you need more info, here’s <a href="https://support.google.com/analytics/answer/6280771">how</a> from Google.</p>
+
+<p class="notice--info text-justify"><i class="far fa-sticky-note"></i> <strong>Note:</strong> For our purposes, you don’t need to go through the whole flow. Just check one-two pages.</p>
+
+<p>When you finished recording, click <code class="highlighter-rouge">Show Full Report</code>. Make sure to check both boxes - for <code class="highlighter-rouge">Test View</code> and for <code class="highlighter-rouge">All Web Site Data</code>.</p>
+
+<p>You will be directed to a Google Tag Assistant Recordings webpage with two reports - one by Tag Assistant and another one by Google Analytics.</p>
+
+<p>You will see Tag Assistant Report by default. Navigate to Google Analytics Report in the top left corner:</p>
+
+<figure class="">
+  <img src="/assets/images/posts/Google-Analytics-in-Tag-Assistant-Recordings.jpg" alt="Google Analytics Report in Google Tag Assistant Recording" />
+  </figure>
+
+<p>Now go to Change location in the left pane (see pic above). Choose <code class="highlighter-rouge">Use a specific IP address</code> and enter your IP address on the right.</p>
+
+<figure class="">
+  <img src="/assets/images/posts/Google-Analytics-Report-Tag-Assistant-Location-Filter.jpg" alt="Location Filter in Google Analytics Report in Google Tag Assistant Recording" />
+  </figure>
+
+<p>Remember that we configured the Views in Filter differentely - enabled it for <code class="highlighter-rouge">All Web Site Data</code> and disabled for <code class="highlighter-rouge">Test View</code>? So here it comes in handy.</p>
+
+<p>If your Filter was set up correctly, you will see no data was recorded for <code class="highlighter-rouge">All Web Site Data</code>.</p>
+
+<figure class="">
+  <img src="/assets/images/posts/Google-Analytics-Report-Tag-Assistant-all-website-data.jpg" alt="Filter check in Google Analytics Report in Google Tag Assistant Recording" />
+  </figure>
+
+<p>On the other hand, the <code class="highlighter-rouge">Test View</code> recorded some information about the user:</p>
+
+<figure class="">
+  <img src="/assets/images/posts/Google-Analytics-Report-Tag-Assistant-test-view.jpg" alt="Filter check in Google Analytics Report in Google Tag Assistant Recording" />
+  </figure>
+
+<p>If you have the same information for both Views, this means that your Filter was not configured correctly. Try going through the steps described above again.</p>
+
+<p>Thumbs up below if you found this post helpful!</p>
+
+<p>Happy blogging.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#google-analytics" class="page__taxonomy-item" rel="tag">Google Analytics</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#google-tag-assistant" class="page__taxonomy-item" rel="tag">Google Tag Assistant</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#minimal-mistakes-jekyll" class="page__taxonomy-item" rel="tag">Minimal Mistakes Jekyll</a>
+    
+    </span>
+  </p>
+
+
+
+
+      </footer>
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "/assets/images/thumbnails/joel-filipe-thumb-400.jpg"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/Running-Cassandra-and-Postgres-in-Docker/" rel="permalink">Running Cassandra and PostgreSQL in Docker
+</a>
+      
+    </h2>
+    <!-- 
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+</p>
+     -->
+    <p class="archive__item-excerpt" itemprop="description">How to set up the environment for Udacity Data Engineering Nanodegree on your local machine
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "/assets/images/thumbnails/joel-filipe-thumb-400.jpg"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/Udacity-Review-Digital-Marketing-Nanodegree/" rel="permalink">Udacity Review: Digital Marketing Nanodegree
+</a>
+      
+    </h2>
+    <!-- 
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+</p>
+     -->
+    <p class="archive__item-excerpt" itemprop="description">Is Digital Marketing Nanodegree by Udacity worth it?
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "/assets/images/thumbnails/joel-filipe-thumb-400.jpg"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/XML-Sitemap-Problem-when-hosting-on-GitHub/" rel="permalink">Troubleshooting: XML Sitemap when hosting on GitHub
+</a>
+      
+    </h2>
+    <!-- 
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+</p>
+     -->
+    <p class="archive__item-excerpt" itemprop="description">How to check Indexing state with Google Search Console
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "/assets/images/thumbnails/joel-filipe-thumb-400.jpg"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/How-to-improve-SEO-by-boosting-website-speed/" rel="permalink">How to improve SEO by boosting website speed
+</a>
+      
+    </h2>
+    <!-- 
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+</p>
+     -->
+    <p class="archive__item-excerpt" itemprop="description">How to Run Website Speed Test with Google PageSpeed Insights
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<!-- end custom footer snippets -->
+        <!-- <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div> -->
+
+<div class="page__footer-copyright">&copy; 2022 Katerina Bosko, PhD. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <!-- <script src="https://kit.fontawesome.com/4eee35f757.js"></script> -->
+
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://0.0.0.0:4000/How-to-Correctly-Set-Up-Internal-IP-Filter-in-Google-Analytics/";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = "/How-to-Correctly-Set-Up-Internal-IP-Filter-in-Google-Analytics"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://cross-validated.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+  </body>
+</html>

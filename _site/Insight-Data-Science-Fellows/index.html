@@ -1,0 +1,741 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.16.6 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Insight Data Science Fellows: Who are They? | Cross-Validated</title>
+<meta name="description" content="In this post, I scrape Insight Data Science Fellows, clean the data, perform EDA and a hypothesis test via bootstrapping">
+
+
+  <meta name="author" content="Katerina Bosko, PhD">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Cross-Validated">
+<meta property="og:title" content="Insight Data Science Fellows: Who are They?">
+<meta property="og:url" content="http://0.0.0.0:4000/Insight-Data-Science-Fellows/">
+
+
+  <meta property="og:description" content="In this post, I scrape Insight Data Science Fellows, clean the data, perform EDA and a hypothesis test via bootstrapping">
+
+
+
+  <meta property="og:image" content="http://0.0.0.0:4000/assets/images/thumbnails/insight-data-science-thumb-600.jpg">
+
+
+
+  <meta name="twitter:site" content="@kbosko3">
+  <meta name="twitter:title" content="Insight Data Science Fellows: Who are They?">
+  <meta name="twitter:description" content="In this post, I scrape Insight Data Science Fellows, clean the data, perform EDA and a hypothesis test via bootstrapping">
+  <meta name="twitter:url" content="http://0.0.0.0:4000/Insight-Data-Science-Fellows/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+      <meta name="twitter:image" content="http://0.0.0.0:4000/assets/images/thumbnails/insight-data-science-thumb-600.jpg">
+    
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2019-09-03T00:00:00-07:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://0.0.0.0:4000/Insight-Data-Science-Fellows/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Katerina Bosko, PhD",
+      "url": "http://0.0.0.0:4000/"
+    
+  }
+</script>
+
+
+  <meta name="google-site-verification" content="SYD0JgIlJwQXb6L6lDyBaRuknpto7FAtNLQEM7RqswU" />
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<!-- <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Cross-Validated Feed"> -->
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+           
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/index.html" >Home</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/" >About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/portfolio/" >Portfolio</a>
+            </li><li class="masthead__menu-item">
+              <a href="/assets/docs/resume-kbosko.pdf" >Resume</a>
+            </li><li class="masthead__menu-item">
+              <a href="/certificates/" >Certificates</a>
+            </li><li class="masthead__menu-item">
+              <a href="/achievements/" >Achievements</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/" >Archive</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/assets/images/kbosko-color-small.jpg" alt="Katerina Bosko, PhD" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Katerina Bosko, PhD</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Data Scientist with background in Social Sciences</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">San Francisco Bay Area (CA)</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:kbosko@cross-validated.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://twitter.com/kbosko3" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/k-bosko/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+          
+            <li><a href="https://linkedin.com/in/k-bosko/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> Linkedin</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Insight Data Science Fellows: Who are They?">
+    <meta itemprop="description" content="In this post, I scrape Insight Data Science Fellows, clean the data, perform EDA and a hypothesis test via bootstrapping">
+    <meta itemprop="datePublished" content="September 03, 2019">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Insight Data Science Fellows: Who are They?
+</h1>
+          <!-- 
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+</p>
+           -->
+          
+            <p class="page__date"><strong></strong> <time datetime="2019-09-03T00:00:00-07:00">September 03, 2019</time></p>
+          
+          <section class="page__share">
+ 
+  <a href="https://twitter.com/intent/tweet?via=kbosko3&text=Insight+Data+Science+Fellows%3A+Who+are+They%3F%20http%3A%2F%2F0.0.0.0%3A4000%2FInsight-Data-Science-Fellows%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F0.0.0.0%3A4000%2FInsight-Data-Science-Fellows%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2F0.0.0.0%3A4000%2FInsight-Data-Science-Fellows%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i></a>
+</section>
+
+        </header>
+      
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> Content</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#1-how-many-fellows">1. How Many Fellows?</a></li>
+  <li><a href="#2-what-universities">2. What Universities?</a></li>
+  <li><a href="#3-what-background">3. What Background?</a></li>
+  <li><a href="#4-what-job-titles">4. What Job Titles?</a></li>
+  <li><a href="#5-what-companies">5. What Companies?</a></li>
+  <li><a href="#6-does-linkedin-prefer-hiring-postdocs">6. Does LinkedIN Prefer Hiring Postdocs?</a></li>
+  <li><a href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
+          </aside>
+        
+        <figure class="">
+  <img src="/assets/images/posts/insight-data-science-1000.jpg" alt="Insight Data Science webpage" />
+  
+    <figcaption>
+      INSIGHT Data Science
+
+    </figcaption></figure>
+
+<p class="text-justify">The <a href="https://www.insightdatascience.com">INSIGHT Data Science Fellows Program</a> is a competitive fellowship targeted at academics from the top universities. It helps recent PhDs and Postdocs to find a prestigious job as data scientists in the industry.</p>
+<p class="text-justify">During 7 weeks of the program,  the fellows work on their own data science projects, which form the core of their portfolio to showcase during job hunting. INSIGHT also helps to prepare for interviews and, as far as I understand, has numerous industry partners. The fellows thus benefit from the extensive network of diverse highly qualified data scientists the program connected throughout the years.</p>
+
+<p class="text-justify">I applied for the fellowship twice, made it to interviews, but unfortunately was rejected. So I was really curious about who are these top ‘quants’ and were they landed a job. I scraped the data from the INSIGHT website and did some quick exploratory data analysis (EDA).</p>
+
+<h2 id="1-how-many-fellows">1. How Many Fellows?</h2>
+
+<p>The final dataset has 794 rows (i.e. so many fellows participated in the INSIGHT Data Science Fellowship)<sup id="fnref:ft1" role="doc-noteref"><a href="#fn:ft1" class="footnote">1</a></sup> and 5 features:</p>
+<ul>
+  <li>Name</li>
+  <li>Company</li>
+  <li>Project</li>
+  <li>Position</li>
+  <li>University</li>
+  <li>(Academic) Field</li>
+  <li>Status (Postdoc/PhD/Other)</li>
+</ul>
+
+<p class="notice--info text-justify"><i class="far fa-sticky-note"></i> <strong>Note:</strong> All fellows that are not PhD or Postdoc (working/studying) were encoded as ‘Other’ and do not contain information in ‘University’ or ‘Field’ columns.</p>
+
+<h2 id="2-what-universities">2. What Universities?</h2>
+
+<p class="text-justify">The 794 INSIGHT Fellows come from 198 different universities - very diverse!</p>
+
+<p class="text-justify">However, almost 50% of the fellows come from the TOP 20 universities (see figure below). Moreover, almost 30% of fellows (219) are from the Californian universities - either Stanford or other UCs. The pattern is not suprising given that it is primarily Silicon Valley companies that hire DS fellows the most.</p>
+<p class="text-justify">The TOP 5 universities that convert PhDs to data scientists are Stanford (79 fellows), UC Berkeley (53), Harvard (31), NYU (22) and University of Texas at Austin (18).</p>
+<figure class="">
+  <img src="/assets/images/posts/insight-universities.png" alt="Insight Data Science: TOP 20 Universities" />
+  </figure>
+
+<h2 id="3-what-background">3. What Background?</h2>
+
+<p class="text-justify">The majority of INSIGHT fellows (64%) are freshly completed PhDs. There are about 29% Postdocs and about 7% practitioners (uni faculty, managers, researchers, etc).</p>
+
+<figure style="width: 40%" class="align-center">
+  <img src="/assets/images/posts/insight-status.png" alt="" />
+</figure>
+
+<p class="text-justify">Almost every third fellow studied Physics/Astrophysics (32%). The next biggest group - 10% - are neuroscientists.<sup id="fnref:ft2" role="doc-noteref"><a href="#fn:ft2" class="footnote">2</a></sup></p>
+
+<figure class="">
+  <img src="/assets/images/posts/insight-field.png" alt="Insight Data Science: Fellows by their background" />
+  </figure>
+
+<h2 id="4-what-job-titles">4. What Job Titles?</h2>
+
+<p class="text-justify">The following figure provides some insights into the popular job titles of INSIGHT DS Fellows.<sup id="fnref:ft3" role="doc-noteref"><a href="#fn:ft3" class="footnote">3</a></sup> Two thirds of all fellows (587) have “Data Scientist” as part of their job title. About 15% of fellows managed to get more senior positions with titles such as “Senior”, “Head”, “Lead” and even “Director”. Only three fellows started as interns or in junior roles. All together, INSIGHT fellows don’t start low and so the fellowship is a great starting point for those transitioning from academia.</p>
+
+<figure class="">
+  <img src="/assets/images/posts/insight-jobs.png" alt="Insight Data Science: Fellows by Job Titles" />
+  </figure>
+
+<h2 id="5-what-companies">5. What Companies?</h2>
+
+<p class="text-justify">794 INSIGHT fellows started working in 383 different companies, 72% of which hired just 1 fellow.</p>
+
+<p class="text-justify">About 40% of all fellows went to work in TOP 30 companies (see figure below). The TOP 5 companies among these are Facebook (54 fellows), LinkedIn (22), Stitch Fix (19), Netflix (15) and Intuit (14). All five are in the Silicon Valley, where the demand for Data Scientist is naturally the highest. Interestingly, INSIGHT also tends to hire own graduates.</p>
+
+<figure class="">
+  <img src="/assets/images/posts/insight-companies.png" alt="Insight Data Science: TOP 30 Companies" />
+  </figure>
+
+<h2 id="6-does-linkedin-prefer-hiring-postdocs">6. Does LinkedIN Prefer Hiring Postdocs?</h2>
+
+<p class="text-justify">When exploring the patterns of TOP10 companies that hired INSIGHT fellows I came across an interesting observation. LinkedIn seems to stand out from the rest 9 companies in that it hired disproportionally more postdocs compared to other Top10 companies:</p>
+
+<figure class="">
+  <img src="/assets/images/posts/insight-crosstab.png" alt="Insight Data Science: TOP10 companies by fellows' status" />
+  </figure>
+
+<p class="text-justify">Let’s check if the difference is statistically significant and perform a hypothesis test via bootstrapping. So I divide the initial dataset into two groups - linkedin/not_linkedin companies. Then I find the observed difference in postdoc means for both groups and bootstrap the data to see if the difference is statistically significant at alpha=0.05.</p>
+
+<p><strong>H<sub>0</sub></strong>: linkedin_postdoc_mean &lt;= non_linkedin postdoc mean <br />
+<strong>H<sub>1</sub></strong>: linkedin_postdoc_mean &gt; non_linkedin postdoc mean</p>
+
+<p>Distribution under the null hypothesis with the plot line for observed statistic looks like this:</p>
+
+<figure style="width: 70%" class="align-center">
+  <img src="/assets/images/posts/insight-linkedin-H0.png" alt="" />
+</figure>
+
+<p class="text-justify">The p-value (0.057) is slightly higher than alpha=0.05. So it’s in the gray area of rejecting/retaining H<sub>0</sub>. Considering practical significance, I think I’m ok with 5% error rate in this case and conclude that LinkedIn indeed prefer hiring Postdocs over PhDs, thus rejecting the H<sub>0</sub> hypothesis.</p>
+
+<p class="text-justify">So if you are the INSIGHT fellow and fresh PhD and want to get a job at LinkedIN - beware, there will be much more competition from more experienced colleagues!</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p class="text-justify">This is a brief exploratory analysis of the INSIGHT Data Fellows - what background they have, where they studied and where they got jobs.</p>
+
+<p class="text-justify">In this project I first scraped the data and then analyzed it in Jupyter Notebook. You can find the source code on my <a href="https://github.com/k-bosko/insight_fellows">GitHub</a>.</p>
+
+<p class="text-justify">There are also other insteresting things to explore with the INSIGHT Fellowship:</p>
+<p class="text-justify">The program has also other <a href="https://www.insightdatascience.com/fellows">tracks</a> besides Data Science like AI, Data Eng, Data PM, etc. One can scrape all INSIGHT Fellows and check if there are different patterns compared to the DS track.</p>
+<p class="text-justify">Tracing the fellows on LinkedIn and checking how they are doing now - i.e. measuring the impact of the program. Are they still in DS? Do they change companies often? Do they hold senior positions now? etc.</p>
+<p> 
+ 
+ 
+ </p>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:ft1" role="doc-endnote">
+      <p>Although in an interview I was told that the INSIGHT stopped updating the database of fellows publicly. So the actual number of fellows by now should be much higher. <a href="#fnref:ft1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:ft2" role="doc-endnote">
+      <p>Fields were aggregated by simple string matching. For instance, “Politic” as a field aggregates here all instances with string “Politic” in the ‘Field’ column. As a result, it includes also “Political Economy”, “Politics”, “Political Science”.  Furthermore, some fellows provided several backgrounds, so they might be counted twice. <a href="#fnref:ft2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:ft3" role="doc-endnote">
+      <p>The list of categories is not exhaustive and is meant only for illustration purposes. It should also be noted that categories are not mutually exclusive. This means that, for instance, the fellow wno is “Senior Data Scientist” appears in both Data Science and Seniority categories. <a href="#fnref:ft3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#insight-data-science-fellowship" class="page__taxonomy-item" rel="tag">Insight Data Science Fellowship</a>
+    
+    </span>
+  </p>
+
+
+
+
+      </footer>
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "/assets/images/thumbnails/joel-filipe-thumb-400.jpg"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/Running-Cassandra-and-Postgres-in-Docker/" rel="permalink">Running Cassandra and PostgreSQL in Docker
+</a>
+      
+    </h2>
+    <!-- 
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+</p>
+     -->
+    <p class="archive__item-excerpt" itemprop="description">How to set up the environment for Udacity Data Engineering Nanodegree on your local machine
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "/assets/images/thumbnails/joel-filipe-thumb-400.jpg"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/Udacity-Review-Digital-Marketing-Nanodegree/" rel="permalink">Udacity Review: Digital Marketing Nanodegree
+</a>
+      
+    </h2>
+    <!-- 
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+</p>
+     -->
+    <p class="archive__item-excerpt" itemprop="description">Is Digital Marketing Nanodegree by Udacity worth it?
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "/assets/images/thumbnails/joel-filipe-thumb-400.jpg"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/XML-Sitemap-Problem-when-hosting-on-GitHub/" rel="permalink">Troubleshooting: XML Sitemap when hosting on GitHub
+</a>
+      
+    </h2>
+    <!-- 
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+</p>
+     -->
+    <p class="archive__item-excerpt" itemprop="description">How to check Indexing state with Google Search Console
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "/assets/images/thumbnails/joel-filipe-thumb-400.jpg"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/How-to-improve-SEO-by-boosting-website-speed/" rel="permalink">How to improve SEO by boosting website speed
+</a>
+      
+    </h2>
+    <!-- 
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+</p>
+     -->
+    <p class="archive__item-excerpt" itemprop="description">How to Run Website Speed Test with Google PageSpeed Insights
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<!-- end custom footer snippets -->
+        <!-- <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div> -->
+
+<div class="page__footer-copyright">&copy; 2022 Katerina Bosko, PhD. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <!-- <script src="https://kit.fontawesome.com/4eee35f757.js"></script> -->
+
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://0.0.0.0:4000/Insight-Data-Science-Fellows/";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = "/Insight-Data-Science-Fellows"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://cross-validated.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+  </body>
+</html>
